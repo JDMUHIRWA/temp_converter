@@ -25,6 +25,6 @@ A simple Flutter app to convert between Fahrenheit and Celsius.
 
 ## 📱 Screenshot
 
-<img src="/Users/muhirwa/Documents/ALU-PROJECTS/temp_converter/App.png" width="300" />
+<img src="/App.png" width="300" />
 
 ---
