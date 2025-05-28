@@ -5,6 +5,7 @@ void main() {
 }
 
 class TemperatureConverterApp extends StatelessWidget {
+  const TemperatureConverterApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,6 +20,7 @@ class TemperatureConverterApp extends StatelessWidget {
 }
 
 class TemperatureConverter extends StatefulWidget {
+  const TemperatureConverter({super.key});
   @override
   _TemperatureConverterState createState() => _TemperatureConverterState();
 }
@@ -29,7 +31,7 @@ class _TemperatureConverterState extends State<TemperatureConverter> {
   final TextEditingController _inputController = TextEditingController();
   String _convertedValue = '';
   ConversionType _selectedConversion = ConversionType.fToC;
-  List<String> _history = [];
+  final List<String> _history = [];
 
   void _convertTemperature() {
     final input = _inputController.text;
@@ -209,13 +211,27 @@ class _TemperatureConverterState extends State<TemperatureConverter> {
   }
 
   Widget _buildConvertButton() {
-    return ElevatedButton(
-      onPressed: _convertTemperature,
-      child: Text('CONVERT'),
-      style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ElevatedButton(
+          onPressed: _convertTemperature,
+          style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+            textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          child: Text('CONVERT'),
+        ),
+        SizedBox(width: 20), // spacing between buttons
+        OutlinedButton(
+          onPressed: _clearAll,
+          style: OutlinedButton.styleFrom(
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+            textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          child: Text('CLEAR'),
+        ),
+      ],
     );
   }
 
