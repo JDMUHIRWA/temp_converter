@@ -2,24 +2,26 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(TemperatureConverterApp());
-}
+} // running the app
 
 class TemperatureConverterApp extends StatelessWidget {
   const TemperatureConverterApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // main widget of the app
       title: 'Temperature Converter',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.system,
-      home: TemperatureConverter(),
+      home: TemperatureConverter(), // main screen of the app
     );
   }
 }
 
 class TemperatureConverter extends StatefulWidget {
+  // stateful widget helps in interactive UI
   const TemperatureConverter({super.key});
   @override
   _TemperatureConverterState createState() => _TemperatureConverterState();
@@ -34,6 +36,7 @@ class _TemperatureConverterState extends State<TemperatureConverter> {
   final List<String> _history = [];
 
   void _convertTemperature() {
+    // this is the fx that converts the inputs
     final input = _inputController.text;
     if (input.isEmpty) return;
 
@@ -76,8 +79,8 @@ class _TemperatureConverterState extends State<TemperatureConverter> {
     return Scaffold(
       appBar: AppBar(title: Text('Converter'), backgroundColor: Colors.blue),
       body: SafeArea(
-        // 👈 ADD THIS
         child: OrientationBuilder(
+          // this widget helps to build different layouts for portrait and landscape modes
           builder: (context, orientation) {
             return Padding(
               padding: const EdgeInsets.all(16.0),
@@ -145,10 +148,12 @@ class _TemperatureConverterState extends State<TemperatureConverter> {
   }
 
   Widget _buildConversionSelector() {
+    // this widget helps to select the conversion type using radio buttons
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Radio<ConversionType>(
+          // radio button for Fahrenheit to Celsius conversion vice vesra
           value: ConversionType.fToC,
           groupValue: _selectedConversion,
           onChanged: (value) {
@@ -180,6 +185,7 @@ class _TemperatureConverterState extends State<TemperatureConverter> {
   }
 
   Widget _buildInputOutputRow() {
+    // this widget helps to create the input and output text fields
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -211,6 +217,7 @@ class _TemperatureConverterState extends State<TemperatureConverter> {
   }
 
   Widget _buildConvertButton() {
+    // this widget helps to create the convert and clear buttons
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -236,10 +243,11 @@ class _TemperatureConverterState extends State<TemperatureConverter> {
   }
 
   Widget _buildHistoryList() {
+    // this widget helps to create the history list of conversions
     return _history.isEmpty
         ? Center(child: Text('No conversions yet.'))
         : ListView.builder(
-          shrinkWrap: true, // 👈 important when not inside Expanded
+          shrinkWrap: true, // important when not inside Expanded
           itemCount: _history.length,
           itemBuilder: (context, index) {
             return ListTile(
